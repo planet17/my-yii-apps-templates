@@ -1,0 +1,4 @@
+.someModifiedTable { margin-top: 20px; width: 100%; } .someModifiedTable td { padding: 5px; border: #6F5129 1px solid; } .someModifiedTable td:first-child { width: 40px; } .someModifiedTable td:nth-child(3) { width: 60px; } .someModifiedTable td:last-child { width: 120px; }
+.questionModifyRow { margin-bottom: 15px; } .questionModifyRow .answerBlock { width: 100%; } .questionModifyRow .answerBlock .answerCol { border: 1px dotted; padding: 2px 5px; font-weight: 400; margin: 2px auto; } .questionModifyRow .answerBlock .answerCol.answerR { font-weight: 700; }
+.myInfo { margin: 10px 0; padding: 0; color: red; font-size: large; }
+.quiz-radio label { display: block; }

@@ -1,0 +1,36 @@
+# files with ~
+*~
+
+# phpstorm project files
+.idea
+
+# netbeans project files
+nbproject
+
+# zend studio for eclipse project files
+.buildpath
+.project
+.settings
+
+# windows thumbnail cache
+Thumbs.db
+
+# composer vendor dir
+/home/yii2/vendor/
+
+# composer itself is not needed
+composer.phar
+/home/yii2/composer.phar
+
+# Mac DS_Store Files
+.DS_Store
+
+# Vagrant stores
+.vagrant
+
+
+# log settings
+log/
+
+# database settings
+/home/apps/my_league/config/db.php

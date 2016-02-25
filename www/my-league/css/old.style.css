@@ -1,0 +1,403 @@
+/** create by planet17 for v.0.1 * template html */
+body {
+    cursor: url('/frontend/web/img/cur/default.ani'), url('/frontend/web/img/cur/default.ani'), default;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(61, 59, 59, 1);
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+    -webkit-user-select: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    color: rgb(34, 28, 28);
+}
+
+body::after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    background-image: url('/frontend/web/img/bck/old.jpg');
+    background-attachment: fixed;
+    opacity: 0.07;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+h1, h2 {
+    margin: 0;
+}
+
+div.bodyWrapper {
+    height: auto;
+    width: 900px;
+    margin: 30px auto;
+    background-color: rgb(229, 229, 229);
+    box-shadow: 0 0 85px -15px #000;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 2px solid rgb(184, 105, 28);
+}
+
+/* region CURSOR */
+.P17I-ElementClickAble {
+    cursor: pointer;
+}
+
+.P17I-WaitUntilProcessingEnd {
+    cursor: wait !important;
+}
+
+/* endregion CURSOR*/
+div.bodyWrapper header,
+div.bodyWrapper footer {
+    height: 120px;
+    background-color: rgba(26, 19, 19, 0.95);
+    color: azure;
+}
+
+div.bodyWrapper footer {
+    text-align: center;
+}
+
+div.bodyWrapper header,
+div.bodyWrapper footer,
+div.bodyWrapper div.centralWrapper {
+    padding: 10px 10px 19px 10px;
+}
+
+div.bodyWrapper header div.tripled {
+    display: inline-block;
+    width: 33%;
+    min-width: 240px;
+    /*background-color: indianred;*/
+    vertical-align: top;
+    text-align: center;
+    padding: auto 0;
+    box-sizing: border-box;
+    height: 100%;
+    float: left;
+}
+
+div.bodyWrapper header div.tripled h1 {
+    font-size: 13px;
+    font-weight: 400;
+    color: #d0d0d0;
+}
+
+div.bodyWrapper header div.tripled span.companyName {
+    font-size: 48px;
+    font-weight: 700;
+    color: rgb(184, 105, 28);
+}
+
+div.bodyWrapper div.clearEmpty {
+    height: 5px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #B8691C;
+    /* border-radius: 0; */
+}
+div.bodyWrapper div.shortInfoHeader {
+    height: auto;
+    width: auto;
+    margin: 0 0 10px 0;
+    background-color: #f7f3e9;
+    /* border-radius: 0; */
+    padding: 10px 10px 5px 10px;
+    color: rgb(77, 77, 77);
+    border-radius: 6px;
+}
+
+div.bodyWrapper div.centralWrapper {
+
+}
+
+div.bodyWrapper div.centralWrapper div.optimizationInfo {
+    display: none;
+}
+
+div.copyrightBlock div {
+    display: inline-block;
+}
+
+div.passportBlock {
+    display: none;
+}
+
+i.iconFontColor {
+    color: #B8691C;
+    -webkit-box-shadow: 2px 2px 7px -2px rgba(0,0,0,0.57);    -moz-box-shadow: 2px 2px 7px 2px rgba(0,0,0,0.77);    
+    box-shadow: 2px 2px 7px -2px rgba(0,0,0,0.57);
+}
+
+div.bodyWrapper div.shortInfoHeader p {
+    padding: 0px 15px 0px 15px;
+}
+
+A:link, A:visited, A:active, A:hover {
+    color: #B8691C;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    font-size: 15px;
+    /* display: inline-block; */
+    padding: 0;
+    margin: 0px 5px 10px;
+}
+
+div.leftSideSlider {
+    height: 262px;    
+    width: 419px;        background-size: cover;    background-color: rgba(0, 0, 0, 0.95);    background-position: center;
+    border-radius: 6px;
+}
+div.centralWrapper {
+  position:relative;
+}
+div.centralWrapper::after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  background-image: url('/frontend/web/img/bck/old.jpg');
+  background-attachment: fixed;
+  opacity: 0.7;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+
+div.bodyWrapper div.centralWrapper div.shortInfo div.leftSideSlider, div.bodyWrapper div.centralWrapper div.shortInfo ul.leftSideSlider {
+    display: inline-block;
+}
+
+div.bodyWrapper div.centralWrapper div.shortInfo ul.leftSideSlider {
+    /* text-align: right; */
+    vertical-align: top;
+}
+
+div.bodyWrapper header div.tripled:last-child {
+    text-align: right;
+    font-size: 14px;
+}
+
+footer {
+    height: 38px !important;
+}
+
+.mainPresentationLeft {
+    width: 50%;
+    height: 300px;
+    /* position: relative; */
+    text-align: center;
+    /* float: left; */
+}
+
+.sliderWrapper {
+    width: 419px;
+    height: 264px;
+    background-size: cover;    background-color: rgba(0, 0, 0, 0.95);    background-position: center;    border-radius: 6px;
+    /* right: 0; */
+    /* position: absolute; */
+    display: inline-block;
+}
+
+.mainPresentation > div {
+    display: inline-block;
+}
+
+.mainPresentationRight {
+    width: 49%;
+    height: auto;
+    vertical-align: top;
+    float: right;
+}
+
+li:before {
+    /* content: '<i class="iconFontColor fa fa-check-square"></i>'; */
+}
+
+div.mainPresentationList ul li i.iconFontColor {
+    margin: 0 10px 0 0;
+}
+
+.mainPresentationList {
+    background-color: #f7f3e9;
+    color: #221C1C;
+    padding: 2px 1px 1px 0px;
+    border-radius: 6px;
+    /* text-align: center; */
+    /* box-sizing: border-box; */
+}
+
+.mainPresentationButton {
+    width: 100%;
+    height: auto;
+    margin: 7px 0 25px 0;
+}
+
+.buttonGetACall {
+    width: 250px;
+    height: 38px;
+    background-color: rgb(184, 105, 28);
+    margin: 0 auto;
+    text-align: center;
+    line-height: 38px;
+    cursor: pointer;
+    font-weight: 700;
+    /* color: #d0d0d0; */
+    border-radius: 7px;
+    /* vertical-align: -webkit-baseline-middle; */
+    -webkit-box-shadow: 2px 2px 7px 2px rgba(0,0,0,0.77); -moz-box-shadow: 2px 2px 7px 2px rgba(0,0,0,0.77); box-shadow: 2px 2px 7px 2px rgba(0,0,0,0.77);
+}
+
+.buttonGetACall:hover {
+    -webkit-box-shadow: inset 1px 1px 7px 2px rgba(0,0,0,0.77); -moz-box-shadow: inset 1px 1px 7px 2px rgba(0,0,0,0.77); 
+    box-shadow: /*2px 2px 7px 2px rgba(0,0,0,0.77),*/ inset 1px 1px 7px 2px rgba(0,0,0,0.77);
+    background-color: rgb(228, 131, 36);
+}
+
+div.blackout.blackoutByGetACallForm {
+    /* region size */
+    height: 100%;
+    width: 100%;
+    /* end region size */
+    /* region coordinates */
+    top: 0;
+    left: 0;
+    z-index: 20;
+    position: fixed;
+    /* end region coordinates */
+    /* region appearance */
+    background-color: rgba(37, 33, 30, 0.67);
+    /* end region appearance */
+    display: none;
+}
+
+form.popupForm {
+    height: 190px;      
+    width: 380px;      
+    /* margin: 0 auto; */
+    top: 192px;      
+    left: 512px;      z-index: 20;      position: fixed;      
+    background-color: rgba(34, 28, 28, 1);      
+    display: none;
+    text-align: center;
+}
+
+form.popupForm span {
+    color: aliceblue;
+}
+
+form.popupForm span,form.popupForm input, form.popupForm div {
+    display: block;
+    margin: 7px auto 13px;
+    width: 285px;
+    height: 17px;
+}
+
+div.mainPresentationList ul li {
+    box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.57);    border-radius: 3px;
+    margin: 15px 7px 15px 0px;
+    padding: 2px 10px 4px 10px;
+    z-index: 1;
+}
+
+.callBlock {
+  
+    height: 60%;
+  text-align: center;
+  
+    width: 192px;
+  
+    margin: 0 0 3px auto;
+  box-sizing: border-box;
+  
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+.callBlockRow {
+    margin: 3px 0 3px 0;
+    box-sizing: border-box;
+}
+
+/* div.mainPresentationList ul li:hover {
+    background: rgba(184, 118, 28, 0.18);
+    color: rgb(5, 5, 5);
+    margin: -2px 7px 5px -3px;
+    z-index: 2;
+} */
+
+/*div.mainPresentationList ul:hover li {
+    opacity:0.85;
+}*/
+
+/*div.mainPresentationList ul:hover li:hover {
+    opacity:1;
+}*/
+
+/*div.mainPresentationList ul li:hover:first-child {    
+    margin: 1px 7px 5px -3px;
+}*/
+
+/* div.mainPresentationList ul li:hover i.iconFontColor {
+    color: rgb(115, 60, 7);
+    box-shadow: none;
+} */
+
+.hardTime {
+    background: rgba(247, 243, 233, 0.03);
+    height: 33%;
+    text-align: center;
+    width: 165px;
+    margin: 0 16px 0 auto;
+    box-sizing: border-box;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+.hardTime:hover {
+    background: rgba(61, 59, 59, 1);    
+    margin-top: -2px;
+    margin-right: 17px;
+}
+
+.hardTimeValue > div {
+    display: inline-block;
+    margin: 0 0 0 5px;
+    box-sizing: border-box;
+}
+
+.hardTimeName {
+    color: rgb(184, 105, 28);
+}
+
+.hardTimeValue {
+    color: rgb(229, 229, 229);
+}
+
+.hardTimeValue div.hardTimeValueTime sup {
+    color: rgb(150, 145, 141);
+    font-size: 10px;
+}
+
+h2 {
+    margin: 10px 0 5px 0;
+}
+
+.autoLogotype {
+    height: 100%;
+    width: 100%;
+    background-position: center 38%;
+    background-repeat: no-repeat;
+}
