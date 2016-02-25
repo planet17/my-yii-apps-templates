@@ -1,4 +1,4 @@
-Yii 2 Minimal Application Template (RESTRUCTED )
+DONT TRY IT! ITS FINISHED! Yii 2 Minimal Application Template (RESTRUCTED )
 ================================
 
 Yii 2 Minimal Application Template is a skeleton Yii 2 application best for
