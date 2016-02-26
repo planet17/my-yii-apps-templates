@@ -31,7 +31,7 @@
                     }
                 ],
                 "generateCookieValidationKey": [
-                    "../apps/my_yii2_application/config/main.php"
+                    "../apps/my_yii2_application/config/main.dist.php"
                 ]
             },
             "asset-installer-paths": {

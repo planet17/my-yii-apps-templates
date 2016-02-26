@@ -32,5 +32,6 @@ composer.phar
 # log settings
 log/
 
-# database settings
-/home/apps/my_league/config/db.php
+# database and project settings
+/home/apps/sam-dark/minimal/config/db.php
+/home/apps/sam-dark/minimal/config/main.php

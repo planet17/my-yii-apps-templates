@@ -1,7 +1,3 @@
-<?php // comment out the following two lines when deployed to production
-defined('YII_DEBUG') or define('YII_DEBUG', true);
-defined('YII_ENV') or define('YII_ENV', 'dev');
-require(__DIR__ . '/../home/yii2/vendor/autoload.php');
-require(__DIR__ . '/../home/yii2/vendor/yiisoft/yii2/Yii.php');
-$config = require(__DIR__ . '/../home/apps/my_yii2_application/config/main.php');
-(new yii\web\Application($config))->run();
+<?php /** User: planet17 Date: 26.02.16 Time: 2:13 */ ?>
+<div><a href="/demo/dark-minimal/">Minimal by Sam Dark</a></div>
+<div><a href="/demo/one-page/">OnePage by Planet17</a></div>
