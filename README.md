@@ -1,12 +1,38 @@
-DONT TRY IT! ITS NON-FINISHED! Yii 2 Minimal Application Template (RESTRUCTED )
+Yii 2 Applications Templates (Restructured)
 ================================
 
-Yii 2 Minimal Application Template is a skeleton Yii 2 application best for
-starting totally from scratch.
+**DO NOT TRY IT! ITS NON-FINISHED!** 
 
-The template contains the basic features including user login/logout.
-It includes all commonly used configurations that would allow you to focus on adding new
-features to your application.
+That is templates based on Yii 2 Minimal Application Template. You can use some of that on your taste.
+That is a skeletons for Yii 2 application best for starting totally from scratch.
+
+## DESCRIPTION APPLICATIONS AND CHANGES FROM ORIGIN
+
+**Main changes:**
+- Had done different structure at your server. Web and etc. move to WWW, all other moved to Home
+
+
+MY PROJECT STRUCTURE
+-------------------
+
+      home/                 contains all main work code what you can not get outer from server.
+      home/apps/            contains all application.
+      home/myLittleHelper/  contains my little script what helps me write configuration for Application
+      home/yii2/            contains yii2-framework and composer for update.
+      home/yii2/vendor      contains yii2-frameworks dependent 3rd-party packages.
+      www/                  contains the entry script and Web resources
+      www/demo              contains guide demo files for get an example of all application
+
+
+
+**Application by Sam Dark (Yii2 Minimal):**
+- The template contains the basic features including user login/logout.
+- It includes all commonly used configurations that would allow you to focus on adding new
+  features to your application.
+
+
+
+
 
 MY TEMPLATE STRUCTURE
 -------------------
@@ -107,7 +133,7 @@ b) Example of my settings for Apache2:
 	CustomLog [path-to-the-dir]/log/access.log combined
 </VirtualHost>
 
-* - About add an ErrorLog and CustomLog is optional, so if you don't create logs dir above
+* - About add an ErrorLog and CustomLog is optional, so if you don't create logs dir above...
 
 ///////////////////////////////////////////////////////////////////////////////
 
