@@ -10,6 +10,7 @@ That is a skeletons for Yii 2 application best for starting totally from scratch
 Causes of creating:
 
 > Q: Why I do that?
+
 > A: I need that template for better start with some of my projects
 
 
