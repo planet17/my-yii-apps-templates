@@ -1,0 +1,65 @@
+<?php require_once('aliases.php');
+$params = array_merge(require(__DIR__ . '/params.php') );
+
+$config = [
+    'id' => 'minimal',
+    'name' => 'Sam Dark Minimal Template',
+    // !!! insert a your language code in the following, at example ru:
+    'language' => 'ru',
+    'sourceLanguage' => 'ru-RU',
+
+    'basePath' => dirname(__DIR__),
+    'defaultRoute' => 'site',
+    'controllerNamespace' => 'samDark\\minimal\\controllers',
+    'charset' => 'utf-8',
+    'bootstrap' => ['log'],
+    'vendorPath' => helpers_pl17_dir_get(__DIR__, 4, ['yii2', 'vendor']),
+    'components' => [
+            'request' => [
+            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+            'cookieValidationKey' => 'enter your secret key here',
+        ],
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
+        ],
+        'user' => [
+            'identityClass' => 'samDark\minimal\models\User',
+            'enableAutoLogin' => true,
+        ],
+        'errorHandler' => [
+            'errorAction' => 'site/error',
+        ],
+        'log' => [
+            'traceLevel' => YII_DEBUG ? 3 : 0,
+            'targets' => [
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['error', 'warning'],
+                ],
+            ],
+        ],
+        'formatter' => [
+            'dateFormat' => 'MM dd, yyyy',
+        ],
+
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+                ['pattern' => '<controller>/<action>', 'route' => '<controller>/<action>']
+            ],
+        ],
+
+        'assetManager' => [
+            'class' => 'yii\web\AssetManager',
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'js' => [
+                        YII_ENV_DEV ? 'jquery.js' : 'jquery.min.js'
+                    ]
+                ],
+            ],
+        ],
+    ],
+    'params' => $params,
+return $config;

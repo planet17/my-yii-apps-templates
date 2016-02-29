@@ -6,13 +6,23 @@ Yii 2 Applications Templates (Restructured)
 That is templates based on Yii 2 Minimal Application Template. You can use some of that on your taste.
 That is a skeletons for Yii 2 application best for starting totally from scratch.
 
-## DESCRIPTION APPLICATIONS AND CHANGES FROM ORIGIN
 
-**Main changes:**
-- Had done different structure at your server. Web and etc. move to WWW, all other moved to Home
+Causes of creating:
+
+> Q: Why I do that?
+> A: I need that template for better start with some of my projects
 
 
-MY PROJECT STRUCTURE
+
+
+
+## DESCRIPTION APPLICATIONS AND DIFFERENCES FROM ORIGIN
+
+**Main differences:**
+- Had done different structure at your server. Web and etc. move to www, all other moved to home
+
+
+MY PROJECT STRUCTURE (general)
 -------------------
 
       home/                 contains all main work code what you can not get outer from server.
@@ -25,28 +35,35 @@ MY PROJECT STRUCTURE
 
 
 
-**Application by Sam Dark (Yii2 Minimal):**
+**Application by Sam Dark ([Yii2 Minimal](https://github.com/samdark/yii2-minimal "Yii2 Minimal from Yii2 developer")) and main differences from the origin:**
 - The template contains the basic features including user login/logout.
 - It includes all commonly used configurations that would allow you to focus on adding new
   features to your application.
+- Configurations is extended by me. UrlManager is on and .htaccess in the directory of web.
+- jQuery at PRODUCTION is min at config!
+- Namespace at application changed from @app to @samDark\minimal
+- Some of aliases in other file what included at start at main config
 
 
-
-
-
-MY TEMPLATE STRUCTURE
+DIRECTORY STRUCTURE
 -------------------
 
-      home/               !!!!contains console commands (controllers)
-      !commands/           contains console commands (controllers)
-      !config/             contains application configurations
-      !controllers/        contains Web controller classes
-      !models/             contains model classes
-      !runtime/            contains files generated during runtime
-      home/yii2/          especially folder for yii2 framework
-      home/yii2/vendor/   contains dependent 3rd-party packages
-      !views/              contains view files for the Web application
-      www/                contains the entry script and Web resources
+      home/sam-dark/minimal/config/             contains application configurations
+      home/sam-dark/minimal/controllers/        contains Web controller classes
+      home/sam-dark/minimal/models/             contains model classes
+      home/sam-dark/minimal/runtime/            contains files generated during runtime
+      home/yii2/vendor/                         contains dependent 3rd-party packages
+      home/sam-dark/minimal/views/              contains view files for the Web application
+      home/sam-dark/minimal/web/                contains the entry script and Web resources
+
+
+
+**Application onePage:**
+
+> ######!!!
+> ######CHANGE THAT
+> ######ADD install info about .dist to web/index.php file
+
 
 DIRECTORY STRUCTURE
 -------------------
@@ -69,7 +86,7 @@ The minimum requirement by this application template that your Web server suppor
 
 
 
-INSTALLATION
+INSTALLATION:
 ------------
 
 
@@ -187,3 +204,10 @@ return [
 - Yii won't create the database for you, this has to be done manually before you can access it.
 - Check and edit the other files in the `config/` directory to customize your application as required.
 
+
+
+Future changes
+================================
+
+1) I want do and very little module with my own helper, so I will remove myLittleHelper and do that like a 3rd party
+into yii2/vendor, and that actually will req. for composer.
