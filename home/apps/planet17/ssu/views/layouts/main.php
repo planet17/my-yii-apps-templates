@@ -1,14 +1,19 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\Menu;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
+/* @var Yii::$app->user->identity \planet17\ssu\models\Auth\Models\User */
 \yii\web\YiiAsset::register($this);
 $CSRFParam = Yii::$app->request->csrfParam;
 $CSRFToken = Yii::$app->request->csrfToken;
-$this->title = 'Want to be registered?';
+$formTemplate =
+    '<form method="post" action="{url}">' .
+    '<input type="hidden" name="' . $CSRFParam .'" value="' . $CSRFToken . '" />' .
+    '<input type="submit" value="{label}" />' .
+    '</form>';
+
 $this->beginPage();
 ?>
 <!DOCTYPE html>
@@ -24,30 +29,25 @@ $this->beginPage();
 <body>
 <?php $this->beginBody(); ?>
     <div class="header">
-        <h1><?php echo Html::a('My company', ['/site/index']); ?></h1>
-    <?php echo Menu::widget([
-        'items' => [
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Sign Up', 'url' => [ '/' ]]
-            ) : (
+        <h1><?php echo Html::a('Logotype', ['/']); ?></h1>
+    <?php
+    if (!Yii::$app->user->isGuest) {
+        echo Menu::widget([
+            'items' => [
                 [
-                    'url' => ['/site/logout'],
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                    'template' => <<<HTML
-<form method="post" action="{url}">
-<input type="hidden" name="{$CSRFParam}" value="{$CSRFToken}" />
-<input type="submit" value="{label}" />
-</form>
-HTML
-,
-                ]
-            ),
-        ]
-    ]); ?>
+                    'url' => ['/auth/logout'],
+                    'label' => 'Do you want one more registration?',
+                    'template' => $formTemplate
+                ],
+            ]
+        ]);
+    }
+    unset($formTemplate);
+     ?>
     </div>
 
     <div class="content">
-        <?php echo $content; ?>
+        <?php echo $content; unset($content); ?>
     </div>
 
     <footer class="footer">

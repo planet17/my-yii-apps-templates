@@ -2,12 +2,13 @@
 
 namespace planet17\ssu\controllers;
 
-use Yii;
-use yii\filters\AccessControl;
-use yii\web\Controller;
-use yii\filters\VerbFilter;
+use planet17\ssu\models\Auth\Forms\Up;
 use planet17\ssu\models\Auth\Models\User;
-/* use planet17\ssu\models\LoginForm; */
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
+use yii\web\Controller;
+use yii\web\HttpException;
+use Yii;
 
 class AuthController extends Controller
 {
@@ -29,35 +30,38 @@ class AuthController extends Controller
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
+                'actions' => ['logout' => ['post'], 'up' => ['get', 'post']],
             ],
         ];
     }
 
     public function actionUp()
     {
+        if (!Yii::$app->user->isGuest) { return $this->complete(); }
+        $model = new Up();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if (($user = $model->signUp()) instanceof User) {
+                if (Yii::$app->getUser()->login($user)) {
+                    return $this->goHome();
+                }
+            } else {
+                throw new HttpException(500, 'Something wrong at server! Error with registering new user!');
+            }
+        }
 
-        return $this->render('up');
+        return $this->render('up', [ 'model' => $model ]);
     }
 
-    public function actionComplete()
-    {
-        if (Yii::$app->user->isGuest) { return $this->goHome(); }
-    }
-
-    /* public function actionIn()
-    {
-        if (!\Yii::$app->user->isGuest) { return $this->goHome(); }
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) { return $this->goBack(); }
-        return $this->render('login', ['model' => $model,]);
-    } */
 
     public function actionLogout()
     {
         Yii::$app->user->logout();
         return $this->goHome();
+    }
+
+
+    private function complete()
+    {
+        return $this->render('complete');
     }
 }

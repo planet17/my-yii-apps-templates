@@ -6,65 +6,57 @@ use planet17\ssu\models\Auth\Models\User;
 use yii\base\Model;
 use Yii;
 
+/**
+ * This is the model class for form "sign-up".
+ *
+ * @property      string        $email
+ * @property      string        $password
+ */
+
 class Up extends Model
 {
-    public $username;
     public $email;
     public $password;
-    public $status;
 
     public function rules()
     {
         return [
-            [['username', 'email', 'password'],'filter', 'filter' => 'trim'],
-            [['username', 'email', 'password'],'required'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
-            ['password', 'string', 'min' => 6, 'max' => 255],
-            ['username', 'unique',
-                'targetClass' => User::className(),
-                'message' => 'Это имя уже занято.'],
+            [['email', 'password'], 'filter', 'filter' => 'trim'],
+            [['email', 'password'], 'required', 'message' => 'You can\'t leave this empty.'],
+            ['password', 'string', 'length' => [8, 24],
+                "tooShort"   => "Значение «{attribute}» должно содержать минимум {min, number} {min, plural, one{символ} few{символа} many{символов} other{символа}}.",
+                "tooLong"    => "Значение «{attribute}» должно содержать максимум {max, number} {max, plural, one{символ} few{символа} many{символов} other{символа}}."
+            ],
+            ['email', 'string', 'length' => [6, 32],
+                "tooLong"    => "Значение «{attribute}» должно содержать максимум {max, number} {max, plural, one{символ} few{символа} many{символов} other{символа}}."
+            ],
             ['email', 'email'],
             ['email', 'unique',
                 'targetClass' => User::className(),
-                'message' => 'Эта почта уже занята.'],
-            ['status', 'default', 'value' => User::STATUS_ACTIVE, 'on' => 'default'],
-            ['status', 'in', 'range' =>[
-                User::STATUS_NOT_ACTIVE,
-                User::STATUS_ACTIVE
-            ]],
-            ['status', 'default', 'value' => User::STATUS_NOT_ACTIVE, 'on' => 'emailActivation'],
+                'message' => 'This email has already been used.'
+            ],
         ];
     }
+
 
     public function attributeLabels()
     {
-        return [
-            'username' => 'Имя пользователя',
-            'email' => 'Эл. почта',
-            'password' => 'Пароль'
-        ];
+        return ['email' => 'E-mail', 'password' => 'Password'];
     }
 
-    public function reg()
+    /**
+     * Create a new User
+     * If the creation is successful then return User
+     * Else return an array with error (Can use that for debug)
+     *
+     * @return User|array
+     */
+    public function signUp()
     {
-        $user = new User();
-        // $model = new User(['scenario' => User::SCENARIO_SIGN_IN]);
-        $user->username = $this->username;
-        $user->email = $this->email;
-        $user->status = $this->status;
-        $user->setPassword($this->password);
-        $user->generateAuthKey();
-        if($this->scenario === 'emailActivation')
-            $user->generateSecretKey();
-        return $user->save() ? $user : null;
-    }
-
-    public function sendActivationEmail($user)
-    {
-        return Yii::$app->mailer->compose('activationEmail', ['user' => $user])
-            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name.' (отправлено роботом).'])
-            ->setTo($this->email)
-            ->setSubject('Активация для '.Yii::$app->name)
-            ->send();
+        $model = new User(['scenario' => User::SCENARIO_SIGN_UP]);
+        $model->email = $this->email;
+        $model->setPassword($this->password);
+        $model->generateAuthKey();
+        return ($model->validate() && $model->save()) ? $model : $model->errors;
     }
 }

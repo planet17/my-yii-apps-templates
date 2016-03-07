@@ -1,5 +1,7 @@
 <?php
 /** User: planet17 Date: 06.03.16 Time: 23:24 */
+/* TODO add and check it this->fields(); */
+/* TODO test other and rewrite dummy function; */
 namespace planet17\ssu\models\Auth\Models;
 
 use yii\db\ActiveRecord;
@@ -21,10 +23,11 @@ use Yii;
 
 class User extends ActiveRecord implements IdentityInterface
 {
-    const SCENARIO_SIGN_IN = 'enter';
-    const SCENARIO_SIGN_UP = 'create';
 
-    public $password;
+    const SCENARIO_SIGN_IN = 'default';
+    const SCENARIO_SIGN_UP = 'create';
+    const VALIDATE_ERROR_AT_LENGTH = "Trying to set value by another methods!";
+
 
     /**
      * @inheritdoc
@@ -34,6 +37,7 @@ class User extends ActiveRecord implements IdentityInterface
         return 'users';
     }
 
+
     /**
      * @inheritdoc
      */
@@ -42,48 +46,73 @@ class User extends ActiveRecord implements IdentityInterface
         return ['email' => 'E-mail', 'password' => 'Password'];
     }
 
+
+    /**
+     * @inheritdoc
+     */
+    public function scenarios()
+    {
+        return [
+            self::SCENARIO_SIGN_IN => ['email', 'password_hash', 'updated_at', 'auth_key'],
+            self::SCENARIO_SIGN_UP => ['email', 'password_hash', 'updated_at', 'created_at', 'auth_key']
+        ];
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['email', 'password'], 'filter', 'filter' => 'trim'],
+            [['email', 'password', 'auth_key'], 'required',
+                'message' => 'Something wrong with {attribute}.',
+                'skipOnEmpty' => false
+            ],
+            ['email', 'string', 'length' => [6, 32],
+                "tooLong"    => "Значение «{attribute}» должно содержать максимум {max, number} {max, plural, one{символ} few{символа} many{символов} other{символа}}."
+            ],
+            ['email', 'email'],
+            ['email', 'unique', 'message' => 'This email has already been used.'],
+            [ 'password_hash', 'string', 'length' => [60, 60],
+                "tooShort"   => self::VALIDATE_ERROR_AT_LENGTH, "tooLong" => self::VALIDATE_ERROR_AT_LENGTH
+            ],
+            [ 'auth_key', 'string', 'length' => [32, 32],
+                "tooShort"   => self::VALIDATE_ERROR_AT_LENGTH, "tooLong" => self::VALIDATE_ERROR_AT_LENGTH
+            ],
+            ['updated_at', 'filter',
+                'filter' => function () {
+                    return date('Y-m-d H:i:s');
+                },
+            ],
+            ['created_at', 'default',
+                'value' => function () {
+                    return date('Y-m-d H:i:s');
+                },
+                'on' => self::SCENARIO_SIGN_UP ]
+        ];
+    }
+
+
     /**
      * Dummy functions for interfaces functions what will be not implemented in that app
      * @return null
      */
     public static function dummy(){
-        return null;
+        die('dummy'); return null;
     }
 
-    /**
-     * Method implemented like @dummy functions for interface
-     * @param int|string $id
-     * @return null
-     */
-    public static function findIdentity($id){
-        return self::dummy();
-    }
-
-    /**
-     * Method implemented like @dummy functions for interface
-     * @param string $token
-     * @param null $type
-     * @return null
-     */
-    public static function findIdentityByAccessToken($token, $type = null){
-        return self::dummy();
-    }
-
-    /**
-     * Method implemented like @dummy functions for interface
-     * @return null
-     */
-    public function getId(){
-        return self::dummy();
-    }
 
     /**
      * Method implemented like @dummy functions for interface
      * @return null
      */
     public function getAuthKey(){
+        echo 'getAuthKey';
         return self::dummy();
     }
+
 
     /**
      * Method implemented like @dummy functions for interface
@@ -91,157 +120,84 @@ class User extends ActiveRecord implements IdentityInterface
      * @return null
      */
     public function validateAuthKey($authKey){
+        echo $authKey;
+        echo 'validateAuthKey';
         return self::dummy();
     }
 
-}
 
     /**
-     * @inheritdoc
+     * Method return ID of User
+     * @return integer id
      */
-    /*public function rules()
-    {
-        return [
-            [['email', 'password'], 'filter', 'filter' => 'trim'],
-            [['email', 'password'], 'required'],
-            ['email', 'email'],
-            ['password', 'string', 'min' => 8, 'max' => 24],
-            ['password', 'required', 'on' => 'create'],
-            ['email', 'unique', 'message' => 'This email has already been used.'],
-            ['secret_key', 'unique'],
-            // установить в "from" и "to" дату 3 дня и 6 дней от сегодняшней, если они пустые
-            /* [['from', 'to'], 'default', 'value' => function ($model, $attribute) {
-                return date('Y-m-d', strtotime($attribute === 'to' ? '+3 days' : '+6 days'));
-            }], */
-            /*['phone', 'filter', 'filter' => function ($value) {
-                // нормализация значения происходит тут
-                return $value;
-            }],*//*
-        ];
-    }*/
+    public function getId(){
+        return $this->id;
+    }
 
 
     /**
-     * @inheritdoc
+     * Method return E-mail of User
+     * @return integer id
+     */
+    public function getEmail(){
+        return $this->email;
+    }
 
-    /*public function scenarios()
-    {
-        return [
-            self::SCENARIO_LOGIN => ['username', 'password', '!secret'],
-     * $model->secret = $secret;
-            self::SCENARIO_SIGN_IN => ['email', 'password'],
-            self::SCENARIO_SIGN_UP => ['email', 'password'],
-        ];
-    }*/
+
+    /**
+     * Method return USER by ID
+     * @param integer $id
+     * @return User
+     */
+    public static function findIdentity($id){
+        return static::findOne([
+            'id' => (integer)$id
+        ]);
+    }
+
+
+    /**
+     * Not implemented cause APP did n't have REST-API
+     * @inheritdoc
+     * @throws HttpException
+     */
+    public static function findIdentityByAccessToken($token, $type = null){
+        throw new HttpException(501, 'Identity by Token is not implemented');
+    }
+
 
     /**
      * It generates a hash of the password what had sent.
      * Function call by planet17\ssu\models\Auth\Forms\Up
      *
-     * @param $password
-     *//*
-    public function setPassword($password)
+     * @param string $pwd
+     */
+    public function setPassword($pwd)
     {
-        $this->password_hash = Yii::$app->security->generatePasswordHash($password);
+        $this->password_hash = Yii::$app->security->generatePasswordHash($pwd);
     }
 
-    /*private static $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
 
     /**
-     * @inheritdoc
-     *//*
-    public static function findIdentity($id)
-    {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+     * It generates a hash random string for auth_key.
+     * Function call by:
+     *  planet17\ssu\models\Auth\Forms\Up
+     *  planet17\ssu\models\Auth\Forms\In
+     */
+    public function generateAuthKey(){
+        $this->auth_key = Yii::$app->security->generateRandomString();
     }
 
-    /**
-     * @inheritdoc
-     *//*
-    public static function findIdentityByAccessToken($token, $type = null)
+    /*
+    public function fields()
     {
-        throw new HttpException(501, 'Identity by Token is not implemented');
+        $fields = parent::fields();
+
+        // удаляем поля, содержащие конфиденциальную информацию
+        unset($fields['auth_key'], $fields['password_hash'], $fields['password_reset_token']);
+
+        return $fields;
     }
+    */
 
-    /**
-     * Finds user by username
-     *
-     * @param  string      $username
-     * @return static|null
-     *//*
-    public static function findByUsername($username)
-    {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * @inheritdoc
-     *//*
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @inheritdoc
-     *//*
-    public function getAuthKey()
-    {
-        return $this->authKey;
-    }
-
-    /**
-     * @inheritdoc
-     *//*
-    public function validateAuthKey($authKey)
-    {
-        return $this->authKey === $authKey;
-    }
-
-    /**
-     * Validates password
-     *
-     * @param  string  $password password to validate
-     * @return boolean if password provided is valid for current user
-     *//*
-    public function validatePassword($password)
-    {
-        return $this->password === $password;
-    }/* */ /*
 }
-// $this->save();
-/*$model = new \app\models\ContactForm;
-$model->attributes = \Yii::$app->request->post('ContactForm');*/
-
-/*
- * public function fields()
-{
-    $fields = parent::fields();
-
-    // удаляем поля, содержащие конфиденциальную информацию
-    unset($fields['auth_key'], $fields['password_hash'], $fields['password_reset_token']);
-
-    return $fields;
-}
- */
