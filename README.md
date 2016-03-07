@@ -177,6 +177,7 @@ Now setting of permission don\'t work automatically, so you need using the follo
 
 ~~~
 chmod 777 home/apps/my_yii2_application/runtime | chmod 777 home/apps/my_yii2_application/runtime
+chmod 777 www/demo/sign-up/assets
 ~~~
 
 CONFIGURATION

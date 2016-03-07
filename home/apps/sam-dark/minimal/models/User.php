@@ -38,14 +38,13 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     /**
      * @inheritdoc
      */
-        public static function findIdentityByAccessToken($token, $type = null)
+    public static function findIdentityByAccessToken($token, $type = null)
     {
         foreach (self::$users as $user) {
             if ($user['accessToken'] === $token) {
                 return new static($user);
             }
         }
-
         return null;
     }
 
