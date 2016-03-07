@@ -35,14 +35,7 @@ class DefaultController extends Controller
 
     public function actions()
     {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-            ],
-        ];
+        return ['error' => ['class' => 'yii\web\ErrorAction']];
     }
 
     public function actionIndex()
@@ -63,10 +56,5 @@ class DefaultController extends Controller
         return $this->render('login', [
             'model' => $model,
         ]);
-    }
-
-    public function actionAbout()
-    {
-        return $this->render('about');
     }
 }

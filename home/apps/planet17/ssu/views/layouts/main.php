@@ -1,6 +1,4 @@
 <?php
-$CSRFParam = Yii::$app->request->csrfParam;
-$CSRFToken = Yii::$app->request->csrfToken;
 
 use yii\helpers\Html;
 use yii\widgets\Menu;
@@ -8,6 +6,9 @@ use yii\widgets\Menu;
 /* @var $this \yii\web\View */
 /* @var $content string */
 \yii\web\YiiAsset::register($this);
+$CSRFParam = Yii::$app->request->csrfParam;
+$CSRFToken = Yii::$app->request->csrfToken;
+$this->title = 'Want to be registered?';
 $this->beginPage();
 ?>
 <!DOCTYPE html>
@@ -26,9 +27,8 @@ $this->beginPage();
         <h1><?php echo Html::a('My company', ['/site/index']); ?></h1>
     <?php echo Menu::widget([
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+                ['label' => 'Sign Up', 'url' => [ '/' ]]
             ) : (
                 [
                     'url' => ['/site/logout'],

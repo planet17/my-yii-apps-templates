@@ -6,7 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
-use planet17\ssu\models\Auth\Model\User;
+use planet17\ssu\models\Auth\Models\User;
 /* use planet17\ssu\models\LoginForm; */
 
 class AuthController extends Controller
