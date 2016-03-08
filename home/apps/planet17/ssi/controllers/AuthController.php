@@ -6,7 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
-use planet17\ssu\models\LoginForm;
+use planet17\ssi\models\LoginForm;
 
 class AuthController extends Controller
 {
@@ -34,8 +34,6 @@ class AuthController extends Controller
             ],
         ];
     }
-
-    public function actionUp() { return $this->render('up'); }
 
     public function actionIn()
     {
