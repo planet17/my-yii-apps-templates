@@ -98,8 +98,10 @@ class User extends ActiveRecord implements IdentityInterface
      * Dummy functions for interfaces functions what will be not implemented in that app
      * @return null
      */
-    public static function dummy(){
-        die('dummy'); return null;
+    public static function dummy(array $params){
+        var_dump($params);
+        die('dummy');
+        return null;
     }
 
 
@@ -108,8 +110,7 @@ class User extends ActiveRecord implements IdentityInterface
      * @return null
      */
     public function getAuthKey(){
-        echo 'getAuthKey';
-        return self::dummy();
+        return self::dummy(['getAuthKey']);
     }
 
 
@@ -119,9 +120,7 @@ class User extends ActiveRecord implements IdentityInterface
      * @return null
      */
     public function validateAuthKey($authKey){
-        echo $authKey;
-        echo 'validateAuthKey';
-        return self::dummy();
+        return self::dummy([$authKey, 'validateAuthKey']);
     }
 
 
