@@ -1,6 +1,5 @@
 <?php
 /** User: planet17 Date: 06.03.16 Time: 23:24 */
-/* TODO add and check it this->fields(); */
 /* TODO test other and rewrite dummy function; */
 namespace planet17\ssu\models\Auth\Models;
 
@@ -187,17 +186,5 @@ class User extends ActiveRecord implements IdentityInterface
     public function generateAuthKey(){
         $this->auth_key = Yii::$app->security->generateRandomString();
     }
-
-    /*
-    public function fields()
-    {
-        $fields = parent::fields();
-
-        // удаляем поля, содержащие конфиденциальную информацию
-        unset($fields['auth_key'], $fields['password_hash'], $fields['password_reset_token']);
-
-        return $fields;
-    }
-    */
 
 }
