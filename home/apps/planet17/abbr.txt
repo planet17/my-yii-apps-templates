@@ -1,5 +1,8 @@
-ssu - simple sign up (just sign up for future project or into admin-panel)
-ssi - simple sign in (for owners)
-wvc - web visit card
 obi - only by invite (you can sign up if you had an invite)
 ops - one page site (only one page)
+ssu - simple sign up (just sign up for future project or add new user into admin-panel)
+ssi - simple sign in (for owners)
+sui - combined app from ssu and ssi
+wvc - web visit card
+
+
