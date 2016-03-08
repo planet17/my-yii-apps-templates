@@ -19,7 +19,7 @@ $this->title = 'Want to be registered?'; ?>
         'fieldConfig' => ['template' => "\n{input}\n{error}\n", 'labelOptions' => []]
     ]);
 
-    echo($form->field($model, 'email')
+    echo($form->field($model, 'email', ['enableAjaxValidation' => true])
         ->input('email', ['placeholder' => $model->attributeLabels()['email']]));
     echo($form->field($model, 'password')
         ->passwordInput(['placeholder' => $model->attributeLabels()['password']]));

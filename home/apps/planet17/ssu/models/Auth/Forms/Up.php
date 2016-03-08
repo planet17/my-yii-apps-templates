@@ -15,8 +15,18 @@ use Yii;
 
 class Up extends Model
 {
+    const SCENARIO_AJAX = 'ajax';
+
     public $email;
     public $password;
+
+    /**
+     * @inheritdoc
+     */
+    public function scenarios()
+    {
+        return array_merge(parent::scenarios(), [ self::SCENARIO_AJAX => ['email']]);
+    }
 
     public function rules()
     {
