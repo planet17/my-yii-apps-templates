@@ -31,7 +31,7 @@ class AuthController extends Controller
                     [
                         'actions' => ['up'],
                         'allow' => true,
-                        'roles' => ['?'],
+                        'roles' => ['?', '@'],
                     ],
                 ],
             ],
