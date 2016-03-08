@@ -23,7 +23,6 @@ $this->beginPage();
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<?php echo Html::csrfMetaTags(); ?>
     <title><?php echo Html::encode($this->title); ?></title>
-    <link rel="stylesheet" href="<?php echo Yii::$app->request->getBaseUrl(); ?>/css/site.css"/>
     <?php $this->head(); ?>
 </head>
 <body>

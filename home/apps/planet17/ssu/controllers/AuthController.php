@@ -41,39 +41,30 @@ class AuthController extends Controller
     {
         /* if user had been registered */
         if (!Yii::$app->user->isGuest) { return $this->complete(); }
+
         $model = new Up();
         /* if any data was sent to server */
         if ($model->load(Yii::$app->request->post())) {
             if (Yii::$app->request->isAjax) {
+
                 /* if ajax-login-check */
-                /*
-                 * TODO; is now send works twice?
-                 *
-                    $.ajax({
-                        url: "/demo/sign-up/",
-                        dataType: "json",
-                        method: "POST",
-                        data: ({
-                            "_csrf":"SjVNdVBhc18fXiQqPBg2DgxCFD8kJzYxGkx1NxsbOTwOGCQDAlAdNw==",
-                            "Up": ({ "email":"demo@de.m" }),
-                            "ajax":"signUP"
-                        })
-                    }).done(function(r) {
-                        console.log(r['up-email'] if no undefined then length);
-                    })
-                 */
                 $model->scenario = 'ajax';
                 Yii::$app->response->format = Response::FORMAT_JSON;
                 return ActiveForm::validate($model);
+
             } elseif($model->validate()) {
+
                 /* if non-ajax */
-                if (($user = $model->signUp()) instanceof User) {
-                    if (Yii::$app->getUser()->login($user)) {
-                        return $this->goHome();
-                    }
+                if (($registrationResponse = $model->signUp()) instanceof User) {
+                    if (Yii::$app->getUser()->login($registrationResponse)) { return $this->goHome(); }
                 } else {
-                    throw new HttpException(500, 'Something wrong at server! Error with registering new user!');
+                    $msg = 'Something wrong at server! Error with registering new user!';
+
+                    if (YII_ENV_DEV) { $msg .= json_encode($registrationResponse); }
+
+                    throw new HttpException(500, $msg );
                 }
+
             } else {
                 throw new HttpException(500, 'Something wrong with sent data!');
             }

@@ -44,7 +44,7 @@ class Up extends Model
             ['email', 'unique',
                 'targetClass' => User::className(),
                 'message' => 'This email has already been used.'
-            ],
+            ]
         ];
     }
 

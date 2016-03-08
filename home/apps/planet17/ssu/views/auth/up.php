@@ -2,13 +2,17 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use planet17\ssu\assets\UpAsset;
 
+UpAsset::register($this);
 /* @var $model planet17\ssu\models\Auth\Forms\Up */
 /* @var $form ActiveForm */
 
-$this->title = 'Want to be registered?'; ?>
+$textQuestion = 'Want to be registered?';
+$this->title = $textQuestion;
+?>
 <h1>Sign up on the site with registration</h1>
-<h2>Want to be registered?</h2>
+<h2><?php echo $textQuestion; ?></h2>
 <p>All you need to do - is sign up!</p>
 <hr>
 
@@ -16,11 +20,14 @@ $this->title = 'Want to be registered?'; ?>
     <?php $form = ActiveForm::begin([
         'method' => 'post', 'action' => ['/'],
         'options' => ['id' => 'signUP', 'enctype' => 'multipart/form-data'],
-        'fieldConfig' => ['template' => "\n{input}\n{error}\n", 'labelOptions' => []]
+        'fieldConfig' => ['template' => "\n{input}\n{error}\n", 'labelOptions' => []],
+        'enableAjaxValidation' => false
     ]);
 
-    echo($form->field($model, 'email', ['enableAjaxValidation' => true])
+    echo($form->field($model, 'email', [])
         ->input('email', ['placeholder' => $model->attributeLabels()['email']]));
+    echo Html::button('Check it', ['class' => 'pl17-btn', 'id' => 'checkingMailUniqueness']);
+
     echo($form->field($model, 'password')
         ->passwordInput(['placeholder' => $model->attributeLabels()['password']]));
     ?>
