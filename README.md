@@ -3,6 +3,11 @@ Yii 2 Applications Templates (Restructured)
 
 **DO NOT TRY IT! ITS NON-FINISHED!** 
 
+Contents:
+-------------------
+1. [INSTALLATION](#installation)
+
+
 That is templates based on Yii 2 Minimal Application Template. You can use some of that on your taste.
 That is a skeletons for Yii 2 application best for starting totally from scratch.
 
