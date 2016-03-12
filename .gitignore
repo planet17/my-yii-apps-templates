@@ -15,11 +15,11 @@ nbproject
 # windows thumbnail cache
 Thumbs.db
 
-# composer vendor dir
+# composer vendor dirs
 /home/yii2/vendor/
 
-# composer itself is not needed
-composer.phar
+# composers itself is not needed
+/composer.phar
 /home/yii2/composer.phar
 
 # Mac DS_Store Files
@@ -28,10 +28,8 @@ composer.phar
 # Vagrant stores
 .vagrant
 
-
 # log settings
-log/
+/log/
 
 # database and project settings
-/home/apps/sam-dark/minimal/config/db.php
 /home/apps/sam-dark/minimal/config/main.php
