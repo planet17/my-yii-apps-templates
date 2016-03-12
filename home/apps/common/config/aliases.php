@@ -10,6 +10,7 @@ Yii::setAlias('@path-apps', helpers_pl17_dir_get(__DIR__, 3));
 
 /** Set a GLOBAL alias @root_namespace for Vanparts-apps */
 Yii::setAlias('@samDark', helpers_pl17_dir_get(__DIR__, 2));
+/*Yii::setAlias('@planet17', helpers_pl17_dir_get(__DIR__, 2));*/
 
 /** Path to @common_apps_directory */
 Yii::setAlias('@path-common', Yii::getAlias('@path-apps') . DIRECTORY_SEPARATOR . 'common');
