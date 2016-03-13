@@ -11,7 +11,7 @@ InAsset::register($this);
 $textQuestion = 'Want to be registered?';
 $this->title = $textQuestion;
 ?>
-<h1>Sign up on the site with registration</h1>
+<h1>Sign In</h1>
 <h2><?php echo $textQuestion; ?></h2>
 <p>All you need to do - is sign up!</p>
 <hr>
@@ -26,13 +26,15 @@ $this->title = $textQuestion;
 
     echo($form->field($model, 'email', [])
         ->input('email', ['placeholder' => $model->attributeLabels()['email']]));
-    echo Html::button('Check it', ['class' => 'pl17-btn', 'id' => 'checkingMailUniqueness']);
 
     echo($form->field($model, 'password')
         ->passwordInput(['placeholder' => $model->attributeLabels()['password']]));
     ?>
+    <?= $form->field($model, 'rememberMe')->checkbox() ?>
     <div class="form-group">
-        <?php echo Html::submitButton('Sign Up', ['class' => 'btn btn-primary']); ?>
+        <?php echo Html::submitButton('Sign In', ['class' => 'btn btn-primary']); ?>
     </div>
     <?php ActiveForm::end(); ?>
+
+    <?= Html::a('Забыли пароль?', ['/main/send-email']) ?>
 </div>
