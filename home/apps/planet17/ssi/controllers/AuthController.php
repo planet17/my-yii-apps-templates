@@ -10,7 +10,7 @@ use planet17\ssi\models\LoginForm;
 
 class AuthController extends Controller
 {
-    public $defaultAction = 'up';
+    public $defaultAction = 'in';
 
     public function behaviors()
     {
@@ -37,6 +37,8 @@ class AuthController extends Controller
 
     public function actionIn()
     {
+        echo('hello');
+        die('<hr>');
         if (!\Yii::$app->user->isGuest) { return $this->goHome(); }
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) { return $this->goBack(); }

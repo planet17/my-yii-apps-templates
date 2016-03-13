@@ -5,22 +5,22 @@ $db = YII_ENV_DEV ?
     array_merge(require(__DIR__ . '/db-server.php') );
 
 $config = [
-    'id' => 'planet17-ssu-template',
-    'name' => 'Template for Sign-up',
+    'id' => 'planet17-ssi-template',
+    'name' => 'Template for Sign-in',
     'basePath' => dirname(__DIR__),
     'defaultRoute' => 'auth',
-    'controllerNamespace' => 'planet17\\ssu\\controllers',
+    'controllerNamespace' => 'planet17\\ssi\\controllers',
     'charset' => 'utf-8',
     'bootstrap' => ['log'],
     'vendorPath' => helpers_pl17_dir_get(__DIR__, 4, ['yii2', 'vendor']),
     'components' => [
         // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-        // as example iV191c3twL7D5cKP9nz8skmi2NGiWd3M
+        // as example iV191c3twL7D5cKP9sz8skmi2NGiWd3M
         'request' => ['cookieValidationKey' => '<secret random string goes here>'],
         'cache' => ['class' => 'yii\caching\FileCache'],
         'user' => [
-            'loginUrl' => ['auth/up'],
-            'identityClass' => 'planet17\ssu\models\Auth\Models\User',
+            'loginUrl' => ['auth/in'],
+            'identityClass' => 'planet17\ssi\models\Auth\Models\User',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => ['errorAction' => 'default/error'],
@@ -43,7 +43,7 @@ $config = [
             ],
         ],
         /*
-         * !!! Be careful with jquery from Google, the now is available version only 2.2.0
+         * !!! Be careful with jquery from Google, the now is available version 2.2.0
          * But in the vendor after update version 2.2.1
          */
         'assetManager' => [
@@ -62,10 +62,10 @@ $config = [
     'params' => $params,
     'aliases' => [
         '@app' => dirname(__DIR__),
-        '@link-demo-up' => ('/demo/sign-up'),
-        '@path-demo-up' => ((Yii::getAlias('@path-www'))
+        '@link-demo-in' => ('/demo/sign-up'),
+        '@path-demo-in' => ((Yii::getAlias('@path-www'))
             . DIRECTORY_SEPARATOR . 'demo'
-            . DIRECTORY_SEPARATOR . 'sign-up'
+            . DIRECTORY_SEPARATOR . 'sign-in'
         )
 
     ],
