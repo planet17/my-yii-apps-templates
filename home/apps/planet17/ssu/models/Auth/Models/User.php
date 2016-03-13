@@ -59,7 +59,7 @@ class User extends ActiveRecord implements IdentityInterface
 
 
     /**
-     * @inheritdoc
+     * @return array the validation rules.
      */
     public function rules()
     {
@@ -98,20 +98,14 @@ class User extends ActiveRecord implements IdentityInterface
      * Dummy functions for interfaces functions what will be not implemented in that app
      * @return null
      */
-    public static function dummy(array $params){
-        var_dump($params);
-        die('dummy');
-        return null;
-    }
+    public static function dummy(){ return null; }
 
 
     /**
      * Method implemented like @dummy functions for interface
      * @return null
      */
-    public function getAuthKey(){
-        return self::dummy(['getAuthKey']);
-    }
+    public function getAuthKey(){ return self::dummy(); }
 
 
     /**
@@ -119,9 +113,7 @@ class User extends ActiveRecord implements IdentityInterface
      * @param string $authKey
      * @return null
      */
-    public function validateAuthKey($authKey){
-        return self::dummy([$authKey, 'validateAuthKey']);
-    }
+    public function validateAuthKey($authKey){ return self::dummy(); }
 
 
     /**
