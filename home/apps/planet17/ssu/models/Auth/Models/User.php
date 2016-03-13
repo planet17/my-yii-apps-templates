@@ -94,35 +94,6 @@ class User extends ActiveRecord implements IdentityInterface
 
 
     /**
-     * Dummy functions for interfaces functions what will be not implemented in that app
-     * Methods bellow is all call dummy function and nothing returns.
-     * That's methods dummy - cause that APPLICATION don't implements a SIGN-IN, but methods still need cause Interface
-     * @return null
-     */
-    public static function dummy(){ return null; }
-    public function getAuthKey(){ return self::dummy(); }
-    public function validateAuthKey($authKey){ return self::dummy(); }
-
-
-    /**
-     * Method return ID of User
-     * @return integer id
-     */
-    public function getId(){
-        return $this->id;
-    }
-
-
-    /**
-     * Method return E-mail of User
-     * @return integer id
-     */
-    public function getEmail(){
-        return $this->email;
-    }
-
-
-    /**
      * Method return USER by ID
      * @param integer $id
      * @return User
@@ -131,16 +102,6 @@ class User extends ActiveRecord implements IdentityInterface
         return static::findOne([
             'id' => (integer)$id
         ]);
-    }
-
-
-    /**
-     * Not implemented cause APP did n't have REST-API
-     * @inheritdoc
-     * @throws HttpException
-     */
-    public static function findIdentityByAccessToken($token, $type = null){
-        throw new HttpException(501, 'Identity by Token is not implemented');
     }
 
 
@@ -157,6 +118,35 @@ class User extends ActiveRecord implements IdentityInterface
 
 
     /**
+     * Method return ID of User
+     * @return integer id
+     */
+    public function getId(){
+        return $this->id;
+    }
+
+
+    /**
+     * TODO: check it, if don't need, remove that
+     * Method return E-mail of User
+     * @return string email
+     */
+    public function getEmail(){
+        return $this->email;
+    }
+
+
+    /**
+     * Dummy functions for interfaces functions what will be not implemented in that app
+     * Methods bellow is all call dummy function and nothing returns.
+     * That's methods dummy - cause that APPLICATION don't implements a SIGN-IN, but methods still need cause Interface
+     * @return null
+     */
+    public static function dummy(){ return null; }
+    public function getAuthKey(){ return self::dummy(); }
+    public function validateAuthKey($authKey){ return self::dummy(); }
+
+    /**
      * It generates a hash random string for auth_key.
      * Function call by:
      *  planet17\ssu\models\Auth\Forms\Up
@@ -166,4 +156,13 @@ class User extends ActiveRecord implements IdentityInterface
         $this->auth_key = Yii::$app->security->generateRandomString();
     }
 
+
+    /**
+     * Not implemented cause APP did n't have REST-API
+     * @inheritdoc
+     * @throws HttpException
+     */
+    public static function findIdentityByAccessToken($token, $type = null){
+        throw new HttpException(501, 'Identity by Token is not implemented');
+    }
 }
