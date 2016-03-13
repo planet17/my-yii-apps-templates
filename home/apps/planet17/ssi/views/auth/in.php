@@ -8,12 +8,10 @@ InAsset::register($this);
 /* @var $model planet17\ssu\models\Auth\Forms\Up */
 /* @var $form ActiveForm */
 
-$textQuestion = 'Want to be registered?';
-$this->title = $textQuestion;
+$textAction = 'Sign In';
+$this->title = $textAction;
 ?>
-<h1>Sign In</h1>
-<h2><?php echo $textQuestion; ?></h2>
-<p>All you need to do - is sign up!</p>
+<h1><?php echo $textAction; ?></h1>
 <hr>
 
 <div class="main-reg">
@@ -25,7 +23,12 @@ $this->title = $textQuestion;
     ]);
 
     echo($form->field($model, 'email', [])
-        ->input('email', ['placeholder' => $model->attributeLabels()['email']]));
+        ->input('email',
+            [
+                'placeholder' => $model->attributeLabels()['email'],
+                'autofocus' => true
+            ]
+        ));
 
     echo($form->field($model, 'password')
         ->passwordInput(['placeholder' => $model->attributeLabels()['password']]));

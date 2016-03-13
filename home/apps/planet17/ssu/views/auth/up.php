@@ -25,7 +25,13 @@ $this->title = $textQuestion;
     ]);
 
     echo($form->field($model, 'email', [])
-        ->input('email', ['placeholder' => $model->attributeLabels()['email']]));
+        ->input('email',
+            [
+                'placeholder' => $model->attributeLabels()['email'],
+                'autofocus' => true
+            ]
+        ));
+
     echo Html::button('Check it', ['class' => 'pl17-btn', 'id' => 'checkingMailUniqueness']);
 
     echo($form->field($model, 'password')
