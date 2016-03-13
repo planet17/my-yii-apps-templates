@@ -58,7 +58,7 @@ class User extends ActiveRecord implements IdentityInterface
 
 
     /**
-     * @inheritdoc
+     * @return array the validation rules.
      */
     public function rules()
     {
@@ -94,32 +94,40 @@ class User extends ActiveRecord implements IdentityInterface
 
 
     /**
-     * Dummy functions for interfaces functions what will be not implemented in that app
-     * @return null
+     * Method return USER by ID
+     * @param integer $id
+     * @return User|null
      */
-    public static function dummy(array $params){
-        var_dump($params);
-        die('dummy');
-        return null;
+    public static function findIdentity($id)
+    {
+        return static::findOne([
+            'id' => (integer)$id
+        ]);
     }
 
 
     /**
-     * Method implemented like @dummy functions for interface
-     * @return null
+     * Method return USER by E-Mail
+     * @param string $email
+     * @return User|null
      */
-    public function getAuthKey(){
-        return self::dummy(['getAuthKey']);
+    public static function findByMail($email)
+    {
+        return static::findOne([
+            'email' => $email
+        ]);
     }
 
 
     /**
-     * Method implemented like @dummy functions for interface
-     * @param string $authKey
-     * @return null
+     * Validates password
+     *
+     * @param  string  $password password to validate
+     * @return boolean if password provided is valid for current user
      */
-    public function validateAuthKey($authKey){
-        return self::dummy([$authKey, 'validateAuthKey']);
+    public function validatePassword($password)
+    {
+        return Yii::$app->security->validatePassword($password, $this->password_hash);
     }
 
 
@@ -127,23 +135,55 @@ class User extends ActiveRecord implements IdentityInterface
      * Method return ID of User
      * @return integer id
      */
-    public function getId(){
-        return self::dummy(['findIdentity']);
+    public function getId()
+    {
         return $this->id;
     }
 
 
     /**
-     * Method return USER by ID
-     * @param integer $id
-     * @return User
+     * It generates a hash random string for auth_key.
+     * Function call by:
+     *  planet17\ssu\models\Auth\Forms\Up
+     *  planet17\ssu\models\Auth\Forms\In
+     *  $this->getAuthKey()
      */
-    public static function findIdentity($id){
-        return self::dummy(['findIdentity']);
-        return static::findOne([
-            'id' => (integer)$id
-        ]);
+    public function generateAuthKey(){
+        $this->auth_key = Yii::$app->security->generateRandomString();
     }
+
+
+    /**
+     * Method need when User to do Sign-In
+     * Implements by Interface
+     *
+     * Function call by:
+     *  Yii\web\User
+     *
+     * @return string auth_key
+     */
+    public function getAuthKey()
+    {
+        $this->generateAuthKey();
+        $this->save();
+        return $this->auth_key;
+    }
+
+
+    /**
+     * Validates auth_key from cookies if enableAutoLogin true
+     *
+     * Function call by:
+     *  Yii\web\User
+     *
+     * @param string $authKey
+     * @return null
+     */
+    public function validateAuthKey($authKey)
+    {
+        return $this->auth_key === $authKey;
+    }
+
 
     /**
      * Not implemented cause APP did n't have REST-API
@@ -153,50 +193,4 @@ class User extends ActiveRecord implements IdentityInterface
     public static function findIdentityByAccessToken($token, $type = null){
         throw new HttpException(501, 'Identity by Token is not implemented');
     }
-
-
-
-    /*
-     *********************
-     * Validates password
-     *
-     * @param  string  $password password to validate
-     * @return boolean if password provided is valid for current user
-    public function validatePassword($password)
-    {
-        return $this->password === $password;
-    }
-    ********************
-    /*
-     * Finds user by username
-     *
-     * @param  string      $username
-     * @return static|null
-    public static function findByUsername($username)
-    {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
-
-        return null;
-    }
-    ********************
-    /*
-     * @inheritdoc
-    public function getAuthKey()
-    {
-        return $this->authKey;
-    }
-    ********************
-    /*
-     * @inheritdoc
-    public function validateAuthKey($authKey)
-    {
-        return $this->authKey === $authKey;
-    }
-    ********************
-
-    /* */
 }

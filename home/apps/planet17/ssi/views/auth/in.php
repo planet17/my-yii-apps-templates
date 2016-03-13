@@ -39,5 +39,5 @@ $this->title = $textAction;
     </div>
     <?php ActiveForm::end(); ?>
 
-    <?= Html::a('Забыли пароль?', ['/main/send-email']) ?>
+    <?= Html::a('Password recovery', ['dummy']) ?>
 </div>

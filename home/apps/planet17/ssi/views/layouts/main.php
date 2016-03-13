@@ -35,7 +35,7 @@ $this->beginPage();
             'items' => [
                 [
                     'url' => ['/auth/logout'],
-                    'label' => 'Do you want one more registration?',
+                    'label' => 'Logout',
                     'template' => $formTemplate
                 ],
             ]

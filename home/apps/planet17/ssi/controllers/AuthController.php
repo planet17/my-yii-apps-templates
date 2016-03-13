@@ -2,15 +2,18 @@
 
 namespace planet17\ssi\controllers;
 
-use Yii;
+use planet17\ssi\models\Auth\Forms\In;
 use yii\filters\AccessControl;
-use yii\web\Controller;
 use yii\filters\VerbFilter;
-use planet17\ssi\models\LoginForm;
+use yii\web\Controller;
+use yii\web\HttpException;
+use Yii;
 
 class AuthController extends Controller
 {
+
     public $defaultAction = 'in';
+
 
     public function behaviors()
     {
@@ -23,7 +26,7 @@ class AuthController extends Controller
                         'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
-                    ],
+                    ]
                 ],
             ],
             'verbs' => [
@@ -35,15 +38,31 @@ class AuthController extends Controller
         ];
     }
 
+
     public function actionIn()
     {
-        echo('hello');
-        die('<hr>');
-        if (!\Yii::$app->user->isGuest) { return $this->goHome(); }
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) { return $this->goBack(); }
-        return $this->render('login', [ 'model' => $model ]);
+        if (!Yii::$app->user->isGuest) {
+            return $this->redirect(['hello']);
+        } else {
+            $model = new In();
+            if ($model->load(Yii::$app->request->post()) && $model->signIn()) {
+                return $this->goBack();
+            }
+        }
+
+        return $this->render('in', [ 'model' => $model ]);
     }
 
+
+    public function actionHello() {
+        /** @var Yii::$app->user->identity planet17\ssi\models\Auth\Models\User */
+        //echo Yii::$app->user->identity->getAttribute('email') . " you are welcome!";
+        return $this->render('hello');
+    }
+
+
     public function actionLogout() { Yii::$app->user->logout(); return $this->goHome(); }
+
+
+    public function actionDummy() { throw new HttpException(501, 'Password/recovery not implemented'); }
 }
