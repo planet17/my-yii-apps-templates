@@ -6,6 +6,8 @@
 4. Complete JavaScript at UI on some-steps-form for SSU
 5. Rewrite error output from SSU at AUTH-C and Form???
 6. Need write to ways to terminate a user session (Security)!
+7. Complete SUI application
+8. Check it out TODO by IDE
 
 # NOTES:
 Is it useful to invalidate cookies on different media:
