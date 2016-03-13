@@ -1,6 +1,5 @@
 <?php
 /** User: planet17 Date: 06.03.16 Time: 23:24 */
-/* TODO test other and rewrite dummy function; */
 namespace planet17\ssu\models\Auth\Models;
 
 use yii\db\ActiveRecord;
@@ -96,23 +95,12 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * Dummy functions for interfaces functions what will be not implemented in that app
+     * Methods bellow is all call dummy function and nothing returns.
+     * That's methods dummy - cause that APPLICATION don't implements a SIGN-IN, but methods still need cause Interface
      * @return null
      */
     public static function dummy(){ return null; }
-
-
-    /**
-     * Method implemented like @dummy functions for interface
-     * @return null
-     */
     public function getAuthKey(){ return self::dummy(); }
-
-
-    /**
-     * Method implemented like @dummy functions for interface
-     * @param string $authKey
-     * @return null
-     */
     public function validateAuthKey($authKey){ return self::dummy(); }
 
 
