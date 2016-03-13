@@ -8,6 +8,7 @@
 6. Need write to ways to terminate a user session (Security)!
 7. Complete SUI application
 8. Check it out TODO by IDE
+9. TODO Ubiquitous Language fix and commit example @sign-out in my Apps, @sign-in #https://robots.thoughtbot.com/sign-up-sign-in-sign-out
 
 # NOTES:
 Is it useful to invalidate cookies on different media:
