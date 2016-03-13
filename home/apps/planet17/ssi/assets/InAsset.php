@@ -8,7 +8,7 @@ use yii\web\View;
  * @author Nickolas Lyzhov <7.fast.cookies@gmail.com>
  * @since alpha
  */
-class UpAsset extends AssetBundle
+class InAsset extends AssetBundle
 {
     /** @var null public $sourcePath = null; */
     public $basePath = '@path-demo-in';
@@ -20,5 +20,5 @@ class UpAsset extends AssetBundle
     public $js = [];
     public $jsOptions = ['position' => View::POS_END];
 
-    public $depends = ['planet17\ssu\assets\GoogleAsset', 'yii\web\JqueryAsset'];
+    public $depends = ['planet17\ssi\assets\GoogleAsset', 'yii\web\JqueryAsset'];
 }

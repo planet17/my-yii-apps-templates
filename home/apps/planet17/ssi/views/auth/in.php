@@ -2,9 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use planet17\ssu\assets\UpAsset;
+use planet17\ssi\assets\InAsset;
 
-UpAsset::register($this);
+InAsset::register($this);
 /* @var $model planet17\ssu\models\Auth\Forms\Up */
 /* @var $form ActiveForm */
 
