@@ -61,7 +61,7 @@ class AuthController extends Controller
 
                 /* if non-ajax */
                 if (($registrationResponse = $model->signUp()) instanceof User) {
-                    if (Yii::$app->getUser()->login($registrationResponse)) { return $this->goHome(); }
+                    if (Yii::$app->getUser()->login($registrationResponse, 0)) { return $this->goHome(); }
                 } else {
                     $msg = 'Something wrong at server! Error with registering new user!';
 
