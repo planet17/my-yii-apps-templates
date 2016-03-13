@@ -62,7 +62,7 @@ $config = [
     'params' => $params,
     'aliases' => [
         '@app' => dirname(__DIR__),
-        '@link-demo-in' => ('/demo/sign-up'),
+        '@link-demo-in' => ('/demo/sign-in'),
         '@path-demo-in' => ((Yii::getAlias('@path-www'))
             . DIRECTORY_SEPARATOR . 'demo'
             . DIRECTORY_SEPARATOR . 'sign-in'
